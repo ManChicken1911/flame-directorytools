@@ -8,10 +8,8 @@
 #
 # Select a directory in the browser and right-click to access
 
-# git push -u origin master
 
-
-##### First some helper-monkeys
+##### First some Qt helper-monkeys
 #####
 
 def ask_yesno( dlg_msg, dlg_title ) :
@@ -75,8 +73,9 @@ def get_mediahub_files_custom_ui_actions():
           tmpFP, tmpName = tempfile.mkstemp( ".sh", "flametar" )
           os.write( tmpFP, '#!/bin/sh\n' )
           os.write( tmpFP, 'cd "' + archive_dest + '"\n' )
-          os.write( tmpFP, 'tar -cf "' + archive_file + '" "' + archive_dir + '"\n' )
-          os.write( tmpFP, 'tar -tf "' + archive_file + '" > "' + archive_file + '.list"\n' )
+          os.write( tmpFP, 'tar -cf "' + archive_file + '_busy" "' + archive_dir + '"\n' )
+          os.write( tmpFP, 'tar -tf "' + archive_file + '_busy" > "' + archive_file + '.list"\n' )
+          os.write( tmpFP, 'mv "' + archive_file + '_busy" "' + archive_file + '"\n' )
           os.write( tmpFP, 'rm "' + tmpName + '"\n' )
           os.close( tmpFP )
 
